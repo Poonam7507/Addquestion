@@ -33,7 +33,7 @@ const Form = () => {
             let data = values;
     
             axios
-            .post("https://portal-backend-21.herokuapp.com/api/question", data, {
+            .post("https://sheltered-springs-36344.herokuapp.com/", data, {
               headers: { 
                    
 
