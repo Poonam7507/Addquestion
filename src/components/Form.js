@@ -1,5 +1,6 @@
 import React,{ useState } from 'react';
 import '../styles/form.css';
+
 import axios from "axios";
 
 const Form = () => {
@@ -33,17 +34,20 @@ const Form = () => {
             let data = values;
     
             axios
-            .post("https://sheltered-springs-36344.herokuapp.com/", data, {
+            .post("https://sheltered-springs-36344.herokuapp.com/api/question", data, 
+            {
               headers: { 
                    
 
                     
-                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiNjE1NDZlNGJlMjEzMGUwNWM0MzYwYzZmIiwiZW1haWwiOiJhaGpzZ0BnbWFpbC5jb20iLCJpYXQiOjE2MzI5MjMyMTF9.GOyjcizMlO4HFYHlGwficdHWkUc4hbTW1j-fO98ZJKI",
-                "Content-type": "application/json;charset=UTF-8",
+                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiNjMyOWFmMzlmZmJlYjEwMDE2MGJjZjljIiwiZW1haWwiOiJzYXVjaGF1ZGgyNDVAZ21haWwuY29tIiwiaWF0IjoxNjYzNjc2MjE3fQ.rUEW5Qnnwb7-rx9iMPPm6_RpO7gf5zv6Uvktec3f3IY",
+
+                "Content-type": "application/json",
               },
             })
             .then((res) => {
                 setStatus(<div className="success-msg"> Success </div>);
+                console.log(res)
             })
             .catch((err) => {
                 setStatus(<div className="error-msg"> Error </div>);
@@ -65,7 +69,9 @@ const Form = () => {
             <div className="form-div">
                 <div>
                    <h2>Description</h2>
+                  
                     <textarea 
+                    
                         className="question-field"
                         id="description"
                         type="text"
@@ -77,14 +83,15 @@ const Form = () => {
                 </div>
                 <div>
                 <h2>Category</h2>
-                    <select
+                    <select required
                        id="category"
                        name="category"
                        value={values.category}
                        onChange={onChangeHandler}
                        className="options"
+                       
                        >
-                       <option value=""></option>
+                       <option value="" disabled selected hidden > Choose Category</option>
                         <option value="c">C</option>
                         <option value="html/css">HTML/CSS</option>
                         <option value="aptitude">APTITUDE</option>
